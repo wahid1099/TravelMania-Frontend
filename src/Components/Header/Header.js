@@ -1,8 +1,12 @@
 import React from 'react';
-import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import {Button, Container, Dropdown, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import UseAuth from "../../Hooks/UseAuth";
+
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Header = () => {
+    const { user, logout ,admin} = UseAuth();
     return (
         <div>
            <Container>
@@ -23,7 +27,26 @@ const Header = () => {
 
 
 
-                               <Link to="/login" className="text-decoration-none text-white"><Button variant="outline-danger" className="btn-sm mt-2">Login</Button></Link>
+
+                               {user.accessToken ?
+                                   <Dropdown>
+                                       <Dropdown.Toggle variant="success" id="dropdown-basic" className="mt-2">
+<BsFillPersonFill className="ms-2 me-2"/>
+                                       </Dropdown.Toggle>
+
+                                       <Dropdown.Menu >
+                                           {user?.accessToken  &&  <span className="text-primary ms-3"><strong>Hello {user.displayName } </strong> </span>  }
+
+                                           {user?.accessToken  &&     <Dropdown.Item as={Link} to="/dashboard">DashBoard</Dropdown.Item>}
+
+                                           <Nav.Link href="#deets"  className="text-black" as={Link} to="/login"><Button variant="danger" onClick={logout}> Log Out</Button></Nav.Link>
+                                       </Dropdown.Menu>
+
+                                   </Dropdown> :
+
+                                   <Link to="/login" className="text-decoration-none text-white"><Button variant="outline-danger" className="btn-sm mt-2">Login</Button></Link>
+
+                               }
                            </Nav>
 
                        </Navbar.Collapse>
