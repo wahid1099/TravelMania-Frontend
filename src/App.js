@@ -9,6 +9,14 @@ import Dahsboard from "./Pages/Dahsboard";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AddExperince from "./Components/User/AddExperince";
 import AddBlog from "./Components/User/AddBlog";
+import AdminRoute from "./PrivateRoute/AdminRoute";
+import ManageBLogs from "./Components/Admin/ManageBLogs";
+import ManageExperince from "./Components/Admin/ManageExperince";
+import MakeAdmin from "./Components/Admin/MakeAdmin";
+import AddBLogsAdmin from "./Components/Admin/AddBLogsAdmin";
+import AddTripSite from "./Components/Admin/AddTripSite";
+import ManageAlltripssites from "./Components/Admin/ManageAlltripssites";
+import BlogDetails from "./Components/Blogs/BlogDetails";
 
 function App() {
   return (
@@ -19,7 +27,10 @@ function App() {
             <Route path="/" element={<Homepage/>}></Route>
             <Route path="/singup" element={<SingUpPage/>}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
-
+            <Route path="/blog/:blogId" element={<PrivateRoute>
+                <BlogDetails/>
+            </PrivateRoute>}>
+            </Route>
             {/*nested routing*/}
             <Route path="/dashboard" element={<Dahsboard />}>
                 user private Routes
@@ -27,23 +38,24 @@ function App() {
                 </Route>
                 <Route exact path="/dashboard/addblog" element={<PrivateRoute><AddBlog/></PrivateRoute>}>
                 </Route>
+                {/*user api*/}
 
-                {/*<Route exact path="/dashboard/addreview" element={<PrivateRoute><AddReview/></PrivateRoute>}>*/}
-                {/*</Route>*/}
-                {/*<Route exact path="/dashboard/payment" element={<PrivateRoute><Payment/></PrivateRoute>}>*/}
-                {/*</Route>*/}
+                {/*Admin Private Routes*/}
+                <Route exact path="/dashboard/addtoursite" element={<AdminRoute><AddTripSite/></AdminRoute>}>
+                </Route>
+                <Route exact path="/dashboard/managetrip" element={<AdminRoute><ManageAlltripssites/></AdminRoute>}>
+                </Route>
 
-                {/*/!*Admin Private Routes*!/*/}
-                {/*<Route exact path="/dashboard/manageorder" element={<AdminRoute><ManageOrders/></AdminRoute>}>*/}
-                {/*</Route>*/}
+                <Route exact path="/dashboard/addblogadmin" element={<AdminRoute><AddBLogsAdmin/></AdminRoute>}>
+                </Route>
 
-                {/*<Route exact path="/dashboard/addservice" element={<AdminRoute><AddService/></AdminRoute>}>*/}
-                {/*</Route>*/}
+                <Route exact path="/dashboard/manageblogs" element={<AdminRoute><ManageBLogs/></AdminRoute>}>
+                </Route>
 
-                {/*<Route exact path="/dashboard/manageservice" element={<AdminRoute><ManageService/></AdminRoute>}>*/}
-                {/*</Route>*/}
-                {/*<Route exact path="/dashboard/makeadmin" element={<AdminRoute><MakeAdmin/></AdminRoute>}>*/}
-                {/*</Route>*/}
+                <Route exact path="/dashboard/mamageexperince" element={<AdminRoute><ManageExperince/></AdminRoute>}>
+                </Route>
+                <Route exact path="/dashboard/makeadmin" element={<AdminRoute><MakeAdmin/></AdminRoute>}>
+                </Route>
 
 
             </Route>

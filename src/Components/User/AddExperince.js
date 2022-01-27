@@ -32,7 +32,7 @@ const AddExperince = () => {
         //booking a apartment
         setSucess(false);
         setReviewadded(true);
-        fetch('https://murmuring-tor-75574.herokuapp.com/addReview', {
+        fetch('https://frozen-woodland-36161.herokuapp.com/addexperince', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -76,7 +76,7 @@ const AddExperince = () => {
                                       onBlur={handleOnBlur}/>
                     </Form.Group>
                     {addingReview  && <Spinner animation="border" />}
-                    {success && <Alert variant="success">Review Added Succesfully</Alert>}
+                    {success && <Alert variant="success">Experence Added Succesfully</Alert>}
                     <div className="mt-2 ps-2 pb-5 text-start">
                         <Button  variant="danger" type="submit" >
                             Add Experince

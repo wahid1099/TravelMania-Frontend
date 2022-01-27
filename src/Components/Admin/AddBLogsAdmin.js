@@ -2,63 +2,61 @@ import React, {useState} from 'react';
 import UseAuth from "../../Hooks/UseAuth";
 import {Alert, Button, Form, Spinner} from "react-bootstrap";
 
-const AddBlog = () => {
-
-    const {user}=UseAuth();
-    const [addingReview,setReviewadded]=useState(false);
-    const[userdetails,setUserdetails]=useState('');
-    const[success,setSucess]=useState(false);
-
-
-    const useremail=user.email;
-    const username=user.displayName;
-    const description=userdetails.description;
-    const rating=userdetails.rating;
-    const location=userdetails.location;
-    const img=userdetails.img;
-    const date=userdetails.date;
-    const time=userdetails.time;
-    const expenses=userdetails.expenses;
-   // const place=userdetails.place;
+const AddBLogsAdmin = () =>{
+const {user}=UseAuth();
+const [addingReview,setReviewadded]=useState(false);
+const[userdetails,setUserdetails]=useState('');
+const[success,setSucess]=useState(false);
 
 
+const useremail=user.email;
+const username=user.displayName;
+const description=userdetails.description;
+const rating=userdetails.rating;
+const location=userdetails.location;
+const img=userdetails.img;
+const date=userdetails.date;
+const time=userdetails.time;
+const expenses=userdetails.expenses;
+// const place=userdetails.place;
 
-    const handleOnBlur=e=>{
-        const field=e.target.name;
-        const value=e.target.value;
-        const newuserdata={...userdetails};
-        newuserdata[field]=value;
-        setUserdetails(newuserdata);
-
-    }
-    const addBlog={useremail,username,description,rating,img,location,date,time,expenses};
-    console.log(addBlog);
 
 
-    const handleAddReview = e => {
-        //booking a apartment
-        setSucess(false);
-        setReviewadded(true);
-        fetch('https://frozen-woodland-36161.herokuapp.com/addblog', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(addBlog)
+const handleOnBlur=e=>{
+    const field=e.target.name;
+    const value=e.target.value;
+    const newuserdata={...userdetails};
+    newuserdata[field]=value;
+    setUserdetails(newuserdata);
+
+}
+const addBlog={useremail,username,description,rating,img,location,date,time,expenses};
+console.log(addBlog);
+
+
+const handleAddReview = e => {
+    //booking a apartment
+    setSucess(false);
+    setReviewadded(true);
+    fetch('https://frozen-woodland-36161.herokuapp.com/addblog', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(addBlog)
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.insertedId) {
+                setSucess(true);
+                setReviewadded(false);
+                e.target.reset();
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    setSucess(true);
-                    setReviewadded(false);
-                    e.target.reset();
-                }
-            })
 
 
-        e.preventDefault();
-    }
-
+    e.preventDefault();
+}
     return (
         <div>
             <div data-aos="zoom-in-up">
@@ -111,9 +109,10 @@ const AddBlog = () => {
                 </Form>
 
             </div>
-            
+
+
         </div>
     );
 };
 
-export default AddBlog;
+export default AddBLogsAdmin;

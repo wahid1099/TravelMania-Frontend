@@ -2,24 +2,22 @@ import React, {useState} from 'react';
 import UseAuth from "../../Hooks/UseAuth";
 import {Alert, Button, Form, Spinner} from "react-bootstrap";
 
-const AddBlog = () => {
-
+const AddTripSite = () => {
     const {user}=UseAuth();
     const [addingReview,setReviewadded]=useState(false);
     const[userdetails,setUserdetails]=useState('');
     const[success,setSucess]=useState(false);
 
 
-    const useremail=user.email;
-    const username=user.displayName;
+
+    const tourname=userdetails.tourname;
     const description=userdetails.description;
     const rating=userdetails.rating;
     const location=userdetails.location;
     const img=userdetails.img;
-    const date=userdetails.date;
-    const time=userdetails.time;
+    const category=userdetails.category;
     const expenses=userdetails.expenses;
-   // const place=userdetails.place;
+// const place=userdetails.place;
 
 
 
@@ -31,20 +29,20 @@ const AddBlog = () => {
         setUserdetails(newuserdata);
 
     }
-    const addBlog={useremail,username,description,rating,img,location,date,time,expenses};
-    console.log(addBlog);
+    const addtrip={tourname,description,rating,img,location,category,expenses};
+    console.log(addtrip);
 
 
     const handleAddReview = e => {
         //booking a apartment
         setSucess(false);
         setReviewadded(true);
-        fetch('https://frozen-woodland-36161.herokuapp.com/addblog', {
+        fetch('https://frozen-woodland-36161.herokuapp.com/addtour', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(addBlog)
+            body: JSON.stringify(addtrip)
         })
             .then(res => res.json())
             .then(data => {
@@ -58,15 +56,14 @@ const AddBlog = () => {
 
         e.preventDefault();
     }
-
     return (
         <div>
             <div data-aos="zoom-in-up">
                 <hr/>
-                <h2 className="mt-2 mb-5">Add Blog</h2>
+                <h2 className="mt-2 mb-5">Add Trip sites</h2>
                 <Form onSubmit={handleAddReview}>
                     <Form.Group className="mb-3 w-50 ms-2" >
-                        <Form.Control type="text" placeholder="Enter Name" className="p-2" defaultValue={username}/>
+                        <Form.Control type="text" placeholder="Enter Tour Site Name" className="p-2" name="tourname"  onBlur={handleOnBlur}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3 w-50 ms-2" >
@@ -75,7 +72,7 @@ const AddBlog = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3 w-50 ms-2" >
-                        <Form.Control type="number" placeholder="Your Rating" className="p-2" name="rating"
+                        <Form.Control type="number" placeholder="Tour Rating" className="p-2" name="rating"
                                       onBlur={handleOnBlur}/>
                     </Form.Group>
 
@@ -87,33 +84,29 @@ const AddBlog = () => {
                         <Form.Control type="text" placeholder="Trip Expense" className="p-2" name="expenses"
                                       onBlur={handleOnBlur}/>
                     </Form.Group>
+
                     <Form.Group className="mb-3 w-50 ms-2" >
-                        <Form.Control type="date" placeholder="Enter Trip Date" className="p-2" name="date"
+                        <Form.Control type="text" placeholder="Trip Category" className="p-2" name="category"
                                       onBlur={handleOnBlur}/>
                     </Form.Group>
 
-                    <Form.Group className="mb-3 w-50 ms-2" >
-                        <Form.Control type="time" placeholder="Enter Trip Time" className="p-2" name="time"
-                                      onBlur={handleOnBlur}/>
-                    </Form.Group>
 
                     <Form.Group className="mb-3 w-50 ms-2" >
                         <Form.Control as="textarea" placeholder="Trip Description" rows={4} name="description"
                                       onBlur={handleOnBlur}/>
                     </Form.Group>
                     {addingReview  && <Spinner animation="border" />}
-                    {success && <Alert variant="success">Blog Added Succesfully</Alert>}
+                    {success && <Alert variant="success">Trip Added Succesfully</Alert>}
                     <div className="mt-2 ps-2 pb-5 text-start">
                         <Button  variant="danger" type="submit" >
-                            Add Experince
+                            Add Tour
                         </Button>
                     </div>
                 </Form>
 
             </div>
-            
         </div>
     );
 };
 
-export default AddBlog;
+export default AddTripSite;

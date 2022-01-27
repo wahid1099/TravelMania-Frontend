@@ -3,7 +3,7 @@ import {Button, FormControl, InputGroup} from "react-bootstrap";
 
 const EmailSubscribe = () => {
     return (
-        <div className="pt-4 pb-4">
+        <div className="pt-4 pb-4" data-aos="zoom-in-up">
 
             <h2>Get better work</h2>
             <h6 className="pt-2">See why million of people accross 195<br/>

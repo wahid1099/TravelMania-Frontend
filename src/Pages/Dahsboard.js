@@ -28,10 +28,12 @@ const Dahsboard = () => {
                     {
                         admin ?
                             <Nav  className="flex-column mt-3">
-                                <Link to="/dashboard/manageorder" className="text-decoration-none text-black ps-3 pt-2"><BsFillCartCheckFill/> Manage Orders</Link>
+                                <Link to="/dashboard/manageblogs" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> All Blogs</Link>
+                                <Link to="/dashboard/addblogadmin" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> Add Blogs</Link>
+                                <Link to="/dashboard/addtoursite" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> Add Tour sites</Link>
+                                <Link to="/dashboard/managetrip" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> Manage Tour site</Link>
                                 <Link to="/dashboard/makeadmin" className="text-decoration-none text-black ps-3 pt-2"><HiUserAdd/> Make Admin</Link>
-                                <Link to="/dashboard/addservice" className="text-decoration-none text-black ps-3 pt-2"><HiFolderAdd/> Add Service</Link>
-                                <Link to="/dashboard/manageservice" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> Manage Service</Link>
+                                <Link to="/dashboard/mamageexperince" className="text-decoration-none text-black ps-3 pt-2"><HiOutlineAdjustments/> Manage Experinces</Link>
 
 
 
