@@ -8,6 +8,7 @@ import TopRatedSpots from "../Components/TopRatedSopts/TopRatedSpots";
 import BlogsPost from "../Components/Blogs/BlogsPost";
 
 const Homepage = () => {
+
     return (
         <div>
             <TopBanner/>

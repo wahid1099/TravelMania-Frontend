@@ -16,7 +16,7 @@ const LoginPage = () => {
     const {user, isLoading, autherror, registerUser, loginUser, signInwithGoogle, logout}=UseAuth();
     const location=useLocation();
     let navigate = useNavigate();
-    console.log(navigate);
+
 
 
 

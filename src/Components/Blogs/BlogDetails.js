@@ -9,6 +9,9 @@ const BlogDetails = () => {
     const [blogdetals,setBLogdetails]=useState({ });
     const [isLoading,setLoading]=useState(true);
     const {blogId}=useParams();
+
+
+
     useEffect(()=>{
         fetch(`https://frozen-woodland-36161.herokuapp.com/blogdetails/${blogId}`)
             .then(res=>res.json())
@@ -16,7 +19,9 @@ const BlogDetails = () => {
                 setBLogdetails(data)
                 setLoading(false)
             })
-    },[blogdetals]);
+    },[]);
+
+
     if(isLoading){
         return <Spinner animation="border"/>
     }

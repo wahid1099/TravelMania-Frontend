@@ -93,7 +93,7 @@ const UseFirebase = () => {
             setIsLoading(false)
         });
 
-    },[user])
+    },[])
     //getting admin data
 
     useEffect(() => {
@@ -134,7 +134,7 @@ const UseFirebase = () => {
     const emailVerify=()=>{
         sendEmailVerification(auth.currentUser)
             .then(result =>{
-console.log(result);
+
                 setuservirifed(true);
         })
     }

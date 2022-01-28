@@ -10,13 +10,10 @@ const BlogsPost = () => {
     const [postsPerPage] = useState(10);
 
         useEffect(()=>{
-        const fetchpost=()=>{
+
             fetch('https://frozen-woodland-36161.herokuapp.com/allblogs')
                 .then(res=>res.json())
                 .then(data=>setBlogs(data))
-        }
-
-        fetchpost();
         },[blogs])
 
 
@@ -31,6 +28,7 @@ const BlogsPost = () => {
 
 
     return (
+        <div>
         <div data-aos="fade-up">
             <Container className="pt-5 pb-5">
             <h1 className='text-primary mb-3'>All Blog Post By our Customers</h1>
@@ -41,6 +39,7 @@ const BlogsPost = () => {
                          paginate={paginate}></Pagination>
 
             </Container>
+        </div>
         </div>
     );
 };

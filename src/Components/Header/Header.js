@@ -6,6 +6,7 @@ import UseAuth from "../../Hooks/UseAuth";
 import { BsFillPersonFill } from "react-icons/bs";
 
 const Header = () => {
+
     const { user, logout ,admin} = UseAuth();
     return (
         <div>
