@@ -1,19 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import Blogs from "./Blogs";
 import Pagination from "./Pagination";
-import {Container} from "react-bootstrap";
+import {Container, Spinner} from "react-bootstrap";
 
 const BlogsPost = () => {
     const [blogs, setBlogs] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
+
 
         useEffect(()=>{
 
             fetch('https://frozen-woodland-36161.herokuapp.com/allblogs')
                 .then(res=>res.json())
-                .then(data=>setBlogs(data))
+                .then(data=>{
+                    setBlogs(data)
+                    setLoading(false)
+                })
         },[blogs])
 
 
@@ -26,7 +30,9 @@ const BlogsPost = () => {
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-
+if(loading){
+     return <Spinner animation="border"/>
+}
     return (
         <div>
         <div data-aos="fade-up">
